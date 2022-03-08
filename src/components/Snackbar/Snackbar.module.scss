@@ -1,0 +1,168 @@
+@import "styles/abstract/mixins";
+
+.container {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: 11;
+  pointer-events: none;
+}
+
+.snackbar {
+  position: fixed;
+  background-color: #488eff;
+  border-radius: 1rem;
+  width: 36.2rem;
+  padding: 1.7rem 2rem;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  overflow: hidden;
+  pointer-events: all;
+  bottom: 3rem;
+  right: 2.5rem;
+  animation: snackbarClose 0.25s ease-in forwards;
+
+  &--active {
+    animation: snackbarOpen 0.35s ease-out forwards;
+  }
+
+  @include respond(xs) {
+    bottom: 2rem;
+    right: 2rem;
+    width: calc(100vw - 4rem);
+  }
+}
+
+.text {
+  font-size: 1.6rem;
+  line-height: 1.4;
+  word-break: break-all;
+  margin-right: 2rem;
+}
+
+.icon {
+  width: 1.9rem;
+  height: 1.9rem;
+  margin-right: 1.2rem;
+  flex-shrink: 0;
+}
+
+.text-container {
+  display: flex;
+  align-items: center;
+}
+
+.close-btn {
+  background-color: transparent;
+  background-color: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  margin-left: auto;
+}
+
+.close-icon {
+  height: 1.7rem;
+  width: 1.7rem;
+  color: #fff;
+}
+
+// Status
+.error {
+  background-color: #ff5050;
+}
+
+.success {
+  background-color: #4cca76;
+}
+
+// Animations
+@keyframes snackbarClose {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  30% {
+    transform: translateY(-0.2rem);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+}
+
+@keyframes snackbarOpen {
+  0% {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+
+  70% {
+    transform: translateY(0.2rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive
+@include respond(lg) {
+  .Snackbar {
+    height: 5.3rem;
+    width: 34rem;
+  }
+
+  .text {
+    font-size: 1.4rem;
+  }
+
+  .icon {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+}
+
+@include respond(md) {
+  .Snackbar-container {
+    padding-top: 7rem;
+  }
+
+  .Snackbar {
+    width: 32rem;
+    height: 5rem;
+  }
+
+  .icon {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+}
+
+@include respond(xs) {
+  .Snackbar-container {
+    padding-top: 2rem;
+  }
+
+  .Snackbar {
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 95%;
+  }
+
+  .icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: 0.8rem;
+  }
+
+  .text {
+    font-size: 1.5rem;
+  }
+}

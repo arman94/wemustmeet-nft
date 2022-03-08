@@ -1,0 +1,235 @@
+@import "styles/abstract/mixins";
+@import "new_styles/abstract/variables";
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.content-piece img {
+  max-width: 50%;
+}
+.wallet-option-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 2rem;
+
+  li {
+    & button {
+      padding: 2rem 4rem;
+      font-size: 1.5rem;
+      border: 0.15rem solid $color-gray !important;
+      background: none;
+      background-color: $color-white;
+      cursor: pointer;
+      // filter: drop-shadow(0 0 0.3rem #00ebff);
+      color: $color-gray;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        background: $color-gray;
+        color: $color-white;
+      }
+    }
+  }
+}
+
+.wallet-option {
+  display: flex;
+  align-items: center;
+
+  .wallet-branding {
+    width: 2em;
+    margin-right: 0.5em;
+    background-color: transparent;
+  }
+
+  & h5 {
+    color: $color-gray;
+  }
+}
+
+.content-info ul {
+  list-style-type: none;
+}
+
+.content-info li {
+  margin: 2px;
+}
+
+.content-collection {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.content-collection-item {
+  width: 30em;
+  margin: 2em;
+}
+
+.content-collection-item img {
+  max-width: 100%;
+}
+
+.extra-prop-list {
+  list-style: none;
+}
+
+.extra-prop-item {
+  padding: 0.1em;
+}
+
+.extra-prop-item input {
+  margin: 0.1em;
+}
+
+.extra-prop-add {
+  justify-self: right;
+}
+
+.extra-prop-dropdown {
+  flex-direction: column;
+}
+
+.container-mint {
+  justify-content: flex-end;
+}
+
+.wallets-dropdown {
+  color: #ad8811 !important;
+  background: none !important;
+  outline: none !important;
+
+  svg {
+    color: $color-gold;
+  }
+}
+
+.popover-content {
+  background: $color-white !important;
+  border-radius: 3px;
+}
+
+.walletMenu {
+  background: none !important;
+  color: $color-white !important;
+  min-width: 100px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    cursor: pointer;
+    color: $color-gray !important;
+  }
+}
+
+.blueGlowText {
+  color: $color-gray !important;
+}
+
+.dialog {
+  background-color: $color-white;
+  color: $color-white;
+  border: none;
+  overflow: hidden;
+  padding-bottom: 0;
+  box-shadow: 0px 0px 1.1rem rgba($color: $color-gray, $alpha: 0.16);
+  border-radius: 1.4rem;
+
+  & > div:first-of-type {
+    background-color: $color-white;
+    border-bottom: none !important;
+    border-color: transparent !important;
+    padding: 1.3rem 1.3rem 1.3rem 2rem;
+
+    & h4 {
+      color: $color-gray;
+    }
+
+    & svg {
+      height: 2.5rem;
+      width: 2.5rem;
+    }
+  }
+
+  @include respond(xs) {
+    max-width: calc(100% - 20px);
+  }
+}
+
+.dialog-title {
+  color: $color-gray;
+  font-weight: bold;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.buttonGold {
+  color: $color-gold !important;
+  outline: $color-gold !important;
+  border-color: $color-gold !important;
+  border: 0.15rem solid $color-gold;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: $color-gold !important;
+    color: $color-white !important;
+  }
+}
+
+.noOutline {
+  outline: none !important;
+  border: none !important;
+
+  &:hover {
+    background: none !important;
+
+    span {
+      color: $color-gold !important;
+    }
+  }
+}
+
+.disconnect {
+  @include respond(xs) {
+    display: none;
+  }
+}
+
+.linkTo {
+  background: none !important;
+  outline: none;
+
+  span {
+    color: $color-white !important;
+
+    &:hover {
+      color: $color-white !important;
+    }
+  }
+}
+
+.buttonGray {
+  color: $color-gray !important;
+  outline: $color-gray !important;
+  border-color: $color-gray !important;
+  border: 0.15rem solid $color-gray;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: $color-gray !important;
+    color: $color-white !important;
+
+    h5 {
+      color: $color-white !important;
+    }
+  }
+}

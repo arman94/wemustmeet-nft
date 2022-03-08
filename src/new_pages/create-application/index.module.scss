@@ -1,0 +1,13 @@
+.container {
+  padding: 5rem 1.6rem 0;
+
+  & > * + * {
+    margin-top: 1.5rem;
+  }
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 2rem;
+}

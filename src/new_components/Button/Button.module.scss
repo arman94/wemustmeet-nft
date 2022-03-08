@@ -1,0 +1,51 @@
+@import "new_styles/abstract/variables";
+
+.button {
+  padding: 1.25rem 3rem;
+  font-size: 1.5rem;
+  border: 1px solid $color-gray;
+  background: none;
+  background-color: $bg-main-color;
+  cursor: pointer;
+  // filter: drop-shadow(0 0 0.3rem rgba($color-gray, 0.16));
+  color: $color-black;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: $color-gray;
+    border-color: $color-gray;
+    color: $color-white;
+  }
+
+  & svg {
+    height: 1.7rem;
+    width: 1.7rem;
+    margin-right: 1rem;
+  }
+}
+
+// styles
+.minimal {
+  border: 0.15rem solid #252544;
+  font-weight: bold;
+  filter: unset;
+  padding: 1.4rem 2.4rem;
+}
+
+// statuses
+.disabled,
+.disabled:hover {
+  cursor: not-allowed;
+  background-color: white;
+  color: #6363af !important;
+  filter: none;
+  border-color: white;
+}
+
+// accents
+.gold {
+  color: $color-gold;
+}

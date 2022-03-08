@@ -1,0 +1,50 @@
+@import "new_styles/abstract/mixins";
+@import "new_styles/abstract/variables";
+
+.container {
+  margin: auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  h1 {
+    font-weight: bold;
+    font-size: 10rem;
+    line-height: 0.9;
+    letter-spacing: -0.5rem;
+    color: $color-gray;
+    display: block;
+    margin: 0;
+    margin-bottom: 4rem;
+
+    @include respond(sm) {
+      font-size: 8rem;
+    }
+
+    @include respond(xs) {
+      font-size: 4rem;
+      letter-spacing: -0.05rem;
+      margin-bottom: 3rem;
+      line-height: 1.2;
+    }
+  }
+
+  p {
+    margin-bottom: 4rem;
+    font-size: 1.8rem;
+    line-height: 1.7;
+
+    span {
+      color: var(--color-gold);
+    }
+
+    @include respond(xs) {
+      font-size: 1.5rem;
+    }
+  }
+
+  @include respond(xs) {
+    padding: 3rem 1.6rem;
+  }
+}

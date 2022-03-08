@@ -1,0 +1,183 @@
+@import "new_styles/abstract/mixins";
+@import "new_styles/abstract/variables";
+
+.footer {
+  width: 100%;
+  padding: 5rem 1.6rem 5rem 1.6rem;
+  position: relative;
+
+  @include respond(xs) {
+    padding: 3rem 1.6rem 6rem 1.6rem;
+  }
+}
+
+.logo {
+  height: 6rem;
+  width: auto;
+  width: auto;
+  object-fit: cover;
+  display: flex;
+  align-items: center;
+  &:hover {
+    cursor: pointer;
+    filter: drop-shadow(0 0 0.1rem #283747);
+  }
+
+  svg {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+
+    path,
+    stroke {
+      fill: $color-gold;
+    }
+  }
+
+  @include respond(md) {
+    height: 5rem;
+  }
+
+  @include respond(sm) {
+    height: 4rem;
+    margin-right: 2rem;
+  }
+
+  @include respond(xs) {
+    height: 3.5rem;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 70rem;
+  margin: 0 auto;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 7.7rem;
+  line-height: 0.9;
+  letter-spacing: -0.5rem;
+  color: $color-gold;
+  display: block;
+  margin: 0;
+  margin-bottom: 2rem;
+
+  @include respond(sm) {
+    font-size: 6rem;
+  }
+
+  @include respond(xs) {
+    font-size: 3rem;
+    letter-spacing: -0.05rem;
+    margin-bottom: 3rem;
+    line-height: 1.2;
+  }
+}
+
+.desc {
+  font-size: 1.7rem;
+  font-weight: bold;
+  line-height: 1.8;
+  max-width: 48rem;
+  margin-bottom: 3rem;
+
+  @include respond(xs) {
+    font-size: 1.4rem;
+  }
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 3rem;
+  margin-top: 7rem;
+  margin-inline: 2rem;
+
+  @include respond(xs) {
+    margin-top: 3rem;
+    padding: 3rem 1.6rem 3rem 1.6rem;
+    flex-direction: column;
+  }
+
+  @media not all and (min-resolution: 0.001dpcm) {
+    @supports (-webkit-appearance: none) {
+      > a {
+        padding: 0 2rem;
+      }
+    }
+  }
+}
+
+.nav-item {
+  color: rgba($color: $color-gray, $alpha: 0.32);
+  font-weight: 500;
+  transition: all 0.1s ease-in-out;
+  font-size: 1.5rem;
+
+  &:hover {
+    color: $color-gray;
+  }
+}
+
+.copyright {
+  margin-top: 14rem;
+  font-size: 1.7rem;
+  color: var(--color-gray);
+  font-weight: 300;
+}
+
+.ground-svg {
+  position: absolute;
+  z-index: -2;
+  bottom: 0rem;
+  opacity: 0.1;
+  width: 100%;
+  left: 0;
+  overflow: hidden;
+  // opacity: 0.16;
+
+  & div {
+    background: linear-gradient(
+      to bottom,
+      var(--bg-main-color),
+      var(--bg-main-color),
+      transparent,
+      var(--bg-main-color)
+    );
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  & svg {
+    transform: scale(1.2);
+  }
+}
+
+.circle-svg {
+  position: absolute;
+  bottom: 14rem;
+  right: 5rem;
+  width: 34rem;
+  height: 34rem;
+  z-index: -1;
+  opacity: 0.08;
+
+  @include respond(xs) {
+    width: 25rem;
+    height: 25rem;
+    right: 2rem;
+    bottom: 20rem;
+  }
+}

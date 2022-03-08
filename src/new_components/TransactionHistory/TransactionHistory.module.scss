@@ -1,0 +1,51 @@
+@import "new_styles/abstract/mixins";
+@import "new_styles/abstract/variables";
+
+.container {
+  padding: 1.8rem 2.4rem;
+  overflow-x: auto;
+  border: 1px solid $color-gray;
+
+  @include respond(xs) {
+    padding: 1rem 1.6rem;
+  }
+}
+
+.title {
+  font-size: 2.6rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: $color-gray;
+
+  @include respond(xs) {
+    font-size: 2.3rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.history-link {
+  &__span {
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      color: $color-gray;
+      .history-link__icon {
+        color: $color-gray;
+      }
+    }
+  }
+  &__icon {
+    margin-left: 10px;
+    margin-bottom: 0.3rem;
+    color: #e6e6f1;
+  }
+}
+
+.no-tx {
+  text-align: center;
+  padding: 1rem;
+  color: rgba($color: $color-gray, $alpha: 0.64);
+  font-size: 1.8rem;
+  margin: 6rem 0;
+}

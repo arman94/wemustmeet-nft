@@ -1,0 +1,72 @@
+name: Staging deployment on testnet
+on:
+  push:
+    branches:
+      - development
+
+env:
+  REACT_APP_API_URL: https://api-sabrehagenexplorer.herokuapp.com/api
+  REACT_APP_YNFT_SCRAPPER: https://ynft-asset-indexer.herokuapp.com/api
+  REACT_APP_IPFS_GATEWAY: https://yieldly.mypinata.cloud/ipfs/
+  REACT_APP_PINATA_URL: https://api.pinata.cloud/pinning/pinFileToIPFS
+  REACT_APP_BLOCK_EXPLORER: https://testnet.algoexplorer.io
+  REACT_APP_ALGO_EXPLORER_API: https://testnet.algoexplorerapi.io
+  REACT_APP_ALGO_BASE_SERVER: https://testnet-algorand.api.purestake.io/ps2
+  REACT_APP_ALGO_BASE_INDEXER: https://testnet-algorand.api.purestake.io/idx2
+  REACT_APP_ALGO_NETWORK: TestNet
+  REACT_APP_SMART_CONTRACT_URL: https://52.15.172.88
+  REACT_APP_IMAGE_OPTIMIZER: https://utils.ynft.club
+  NODE_OPTIONS: "--max_old_space_size=4096"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID}}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          aws-region: us-east-2
+
+      - name: create env file
+        run: |
+          touch .env
+          echo REACT_APP_API_URL = ${{ env.REACT_APP_API_URL }} >> .env
+          echo REACT_APP_YNFT_SCRAPPER = ${{ env.REACT_APP_YNFT_SCRAPPER }} >> .env
+          echo REACT_APP_STORAGE_TOKEN = ${{ secrets.STORAGE_TOKEN }} >> .env
+          echo REACT_APP_IPFS_GATEWAY = ${{ env.REACT_APP_IPFS_GATEWAY }} >> .env
+          echo REACT_APP_PINATA_URL = ${{ env.REACT_APP_PINATA_URL }} >> .env
+          echo REACT_APP_PINATA_JWT = ${{ secrets.REACT_APP_PINATA_JWT }} >> .env
+          echo REACT_APP_BLOCK_EXPLORER = ${{ env.REACT_APP_BLOCK_EXPLORER }} >> .env
+          echo REACT_APP_ALGO_EXPLORER_API = ${{ env.REACT_APP_ALGO_EXPLORER_API }} >> .env
+          echo REACT_APP_ALGO_BASE_SERVER = ${{ env.REACT_APP_ALGO_BASE_SERVER }} >> .env
+          echo REACT_APP_ALGO_BASE_INDEXER = ${{ env.REACT_APP_ALGO_BASE_INDEXER }} >> .env
+          echo REACT_APP_ALGO_NETWORK = ${{ env.REACT_APP_ALGO_NETWORK }} >> .env
+          echo REACT_APP_PURESTAKE_KEY = ${{ secrets.STAGING_PURESTAKE_KEY }} >> .env
+          echo REACT_APP_SMART_CONTRACT_URL = ${{ env.REACT_APP_SMART_CONTRACT_URL }} >> .env
+          echo REACT_APP_IMAGE_OPTIMIZER = ${{ env.REACT_APP_IMAGE_OPTIMIZER }} >> .env
+
+      - uses: actions/cache@v2
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn install
+
+      - name: Build Static Pages
+        run: yarn build
+
+      - name: Make envfile
+        run: |
+          cp .env ./build
+
+      - name: Deploy website on S3 bucket
+        run: aws s3 sync ./build/ s3://algotools-staging --delete
+
+      - name: Cloudfront Invalidation
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.STAGING_AWS_CLOUDFRONT_ID }} --paths "/*"

@@ -1,0 +1,13 @@
+@import "../abstract/variables";
+
+.glowGold {
+  color: $bg-main-color;
+  text-shadow: 0 0 0.6rem $color-gold;
+  -webkit-text-stroke: 0.15rem $color-gold;
+}
+
+.glowDark {
+  color: $bg-main-color;
+  text-shadow: 0 0 0.6rem $color-gray;
+  -webkit-text-stroke: 0.15rem $color-gray;
+}

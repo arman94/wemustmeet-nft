@@ -1,0 +1,17 @@
+@import "new_styles/abstract/mixins";
+
+.blueText {
+  color: var(--color-gold) !important;
+  margin: 0 !important;
+}
+
+.goldText {
+  color: var(--color-gold) !important;
+  margin: 0 !important;
+  font-weight: bold;
+}
+
+.whiteText {
+  color: white !important;
+  margin: 0 !important;
+}

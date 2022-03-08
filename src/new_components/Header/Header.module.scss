@@ -1,0 +1,259 @@
+@import "new_styles/abstract/mixins";
+@import "new_styles/abstract/variables";
+
+.header-container {
+  height: 8rem;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  background: $color-white;
+  // background-color: rgba($color-gray, 1);
+  box-shadow: 3px 0 12px rgba($color: #000000, $alpha: 0.16);
+
+  @include respond(xs) {
+    height: 6.5rem;
+  }
+}
+
+.header {
+  max-width: 139.2rem;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.6rem;
+  position: relative;
+}
+
+.logo {
+  height: 6rem;
+  width: auto;
+  width: auto;
+  object-fit: cover;
+  display: flex;
+  align-items: center;
+  z-index: 9;
+  &:hover {
+    cursor: pointer;
+    filter: drop-shadow(0 0 0.1rem #283747);
+  }
+
+  svg {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+
+    path,
+    stroke {
+      fill: $color-gold;
+    }
+  }
+
+  @include respond(md) {
+    height: 5rem;
+  }
+
+  @include respond(sm) {
+    height: 4rem;
+    margin-right: 2rem;
+  }
+
+  @include respond(xs) {
+    height: 3.5rem;
+  }
+}
+
+.nav {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 2rem;
+
+  & > * + * {
+    margin-left: 1.7rem;
+  }
+
+  @include respond(md) {
+    & > * + * {
+      margin-left: 0.5rem;
+    }
+  }
+
+  @include respond(sm) {
+    display: none;
+  }
+}
+
+.nav-item {
+  font-weight: 500;
+  padding: 1rem 2rem;
+  font-size: 1.55rem;
+  white-space: nowrap;
+  color: rgba($color: $color-gray, $alpha: 0.48);
+  transition: all 300ms ease;
+
+  &:hover {
+    color: $color-gray;
+    text-decoration: none;
+    // filter: drop-shadow(0 0 0.2rem $color-gray);
+  }
+
+  @include respond(md) {
+    font-size: 1.4rem;
+    padding: 1rem 1.5rem;
+  }
+}
+
+.actions {
+  display: grid;
+  grid-gap: 2rem;
+  z-index: 2;
+  align-items: center;
+  text-align: right;
+
+  @include respond(md) {
+    grid-template-columns: repeat(2, auto);
+    grid-gap: 1rem;
+  }
+
+  @include respond(sm) {
+    grid-template-columns: repeat(3, auto);
+  }
+
+  @include respond(xs) {
+    grid-template-columns: repeat(2, auto);
+    grid-gap: 0;
+  }
+}
+
+div.search-input {
+  @include respond(xs) {
+    display: none;
+  }
+}
+
+.action {
+  color: var(--color-white);
+  background: none;
+  border-radius: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 4.3rem;
+  width: 4.3rem;
+  border: none;
+
+  svg {
+    height: 2.4rem;
+    width: auto;
+  }
+
+  @include respond(md) {
+    svg {
+      height: 2rem;
+    }
+  }
+
+  @include respond(sm) {
+    height: 3rem;
+    width: 3rem;
+  }
+}
+
+.mobile-menu {
+  display: none;
+  color: var(--color-white);
+  margin-left: 1.3rem;
+
+  & svg {
+    height: 2.2rem;
+    color: var(--color-gold);
+  }
+
+  @include respond(sm) {
+    display: flex;
+  }
+}
+
+.aside {
+  background-color: var(--bg-main-color);
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  transform: translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease-in-out;
+
+  @include respond(sm) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &--open {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 6.5rem;
+    padding: 1.6rem;
+
+    & > button {
+      @extend .action;
+
+      & svg {
+        transform: scale(0.8);
+        color: $color-gold;
+      }
+    }
+  }
+
+  &__content {
+    padding: 2rem 2.5rem;
+    height: 100%;
+  }
+
+  &__search-input {
+    display: none;
+    margin-bottom: 3rem;
+
+    @include respond(xs) {
+      display: flex;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+
+    & > * + * {
+      margin-top: 1rem;
+    }
+  }
+
+  &__nav-item {
+    @extend .nav-item;
+
+    padding: 1rem 0;
+    font-size: 1.5rem;
+  }
+}
+
+.nav-active {
+  color: $color-gray;
+  text-decoration: none;
+}
